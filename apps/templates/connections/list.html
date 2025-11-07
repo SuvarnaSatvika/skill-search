@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Connections</h1>
+    <h2>Pending Requests</h2>
+    <ul>
+        {% for conn in pending %}
+            <li>
+                From: {{ conn.from_user.username }}
+                <a href="/connections/accept/{{ conn.id }}/">Accept</a>
+                <a href="/connections/reject/{{ conn.id }}/">Reject</a>
+            </li>
+        {% empty %}
+            <li>No pending requests.</li>
+        {% endfor %}
+    </ul>
+    <h2>Accepted Connections</h2>
+    <ul>
+        {% for user in accepted_users %}
+            <li>
+                Connected to: {{ user.username }} <a href="/messages/{{ user.id }}/">Message</a>
+            </li>
+        {% empty %}
+            <li>No connections.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

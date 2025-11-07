@@ -1,0 +1,23 @@
+# Django/Python
+*.pyc
+*.pyo
+__pycache__/
+*.db  # e.g., db.sqlite3
+migrations/
+media/
+staticfiles/
+
+# Environment
+.env
+venv/
+.env.local
+
+# Logs/Backups
+*.log
+*.bak
+*.swp
+
+# OS/IDE
+.DS_Store
+.idea/
+.vscode/

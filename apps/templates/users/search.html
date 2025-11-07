@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Search Skills</h1>
+    <form method="GET">
+        <input type="text" name="skill" value="{{ skill }}" placeholder="Enter skill" style="padding: 5px; margin-right: 5px;">
+        <button type="submit">Search</button>
+    </form>
+    {% if profiles_with_conn %}
+        <ul>
+            {% for item in profiles_with_conn %}
+                <li>
+                    <strong>{{ item.profile.user.username }}</strong> - Skills: {{ item.profile.skills }}
+                    {% with conn=item.conn %}
+                        {% if conn %}
+                            {% if conn.status == 'pending' %}Pending{% elif conn.status == 'accepted' %}<a href="/messages/{{ item.profile.user.id }}/">Message</a>{% endif %}
+                        {% else %}
+                            <a href="/connections/send/{{ item.profile.user.id }}/">Send Request</a>
+                        {% endif %}
+                    {% endwith %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
